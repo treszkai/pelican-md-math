@@ -9,8 +9,7 @@ except ImportError:
 
 
 def math_for_markdown(pelicanobj):
-    """Instantiates a customized markdown extension for handling mathjax
-    related content"""
+    """Registers a custom markdown extension for handling math tags"""
 
     try:
         pelicanobj.settings["MARKDOWN"].setdefault("extensions", []).append(
@@ -32,6 +31,7 @@ def pelican_init(pelicanobj):
     """
     if PelicanMathExtension:
         math_for_markdown(pelicanobj)
+
 
 def register():
     """Plugin registration"""

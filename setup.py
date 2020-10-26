@@ -18,7 +18,7 @@ setup(
     install_requires=["pelican>=4.5"],
     include_package_data=True,  # includes files from MANIFEST.in
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
+        "Development Status :: 4 - Beta",
         "Framework :: Pelican :: Plugins",
         "Framework :: Pelican",
         "License :: OSI Approved :: GNU Affero General Public License v3",
