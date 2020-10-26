@@ -17,7 +17,7 @@ class MathInlineProcessor(InlineProcessor):
 
 
 class MathBlockProcessor(BlockProcessor):
-    RE_DISPLAY_BLOCK = r'\\\[(.*)\\\]'
+    RE_DISPLAY_BLOCK = r'(?:\\\[|\$\$)(.*)(?:\\\]|\$\$)'
     ELEM_TEXT_BEGIN = '% <![CDATA[\n'
     ELEM_TEXT_END = ' %]]>'
 
@@ -25,12 +25,17 @@ class MathBlockProcessor(BlockProcessor):
         return re.fullmatch(self.RE_DISPLAY_BLOCK, block, re.DOTALL)
 
     def run(self, parent, blocks):
+        # TODO we can't match if there's an empty line inside the math block
         block = blocks.pop(0)
         m = re.fullmatch(self.RE_DISPLAY_BLOCK, block, re.DOTALL)
 
         e = etree.SubElement(parent, 'script')
         e.set('type', 'math/tex; mode=display')
-        e.text = self.ELEM_TEXT_BEGIN + m.group(1).strip('\n') + self.ELEM_TEXT_END
+        e.text = AtomicString(
+            self.ELEM_TEXT_BEGIN + m.group(1).strip('\n') + self.ELEM_TEXT_END
+        )
+
+        # TODO replace ]]>
 
         return True
 
