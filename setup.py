@@ -5,12 +5,12 @@ from pathlib import Path
 from setuptools import find_packages, setup
 
 setup(
-    name="pelican-convert-math",
+    name="pelican-md-math",
     version="0.0.0",
     author="Laszlo Treszkai",
     author_email="laszlo.treszkai@gmail.com",
     packages=find_packages(),
-    url="https://github.com/treszkai/convert-math",
+    url="https://github.com/treszkai/pelican-md-math",
     license="AGPL-3.0",
     description="Convert math tags in markdown input for Pelican",
     long_description=Path("README.md").read_text(),

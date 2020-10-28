@@ -1,6 +1,6 @@
 from markdown.test_tools import TestCase
 
-from pelican.plugins.convert_math import PelicanMathExtension
+from pelican.plugins.md_math import MarkdownMathExtension
 
 
 class TestMathExtension(TestCase):
@@ -24,7 +24,7 @@ class TestMathExtension(TestCase):
             ),
             # Other keyword arguments to pass to `markdown.markdown`
             output_format='html',
-            extensions=[PelicanMathExtension()],
+            extensions=['pelican.plugins.md_math'],
         )
 
     def test_math_display_square(self):
@@ -47,7 +47,7 @@ class TestMathExtension(TestCase):
             ),
             # Other keyword arguments to pass to `markdown.markdown`
             output_format='html',
-            extensions=[PelicanMathExtension()],
+            extensions=[MarkdownMathExtension()],
         )
 
     def test_math_display_dollars(self):
@@ -70,5 +70,5 @@ class TestMathExtension(TestCase):
             ),
             # Other keyword arguments to pass to `markdown.markdown`
             output_format='html',
-            extensions=[PelicanMathExtension()],
+            extensions=[MarkdownMathExtension()],
         )

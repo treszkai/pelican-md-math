@@ -40,7 +40,7 @@ class MathBlockProcessor(BlockProcessor):
         return True
 
 
-class PelicanMathExtension(markdown.Extension):
+class MarkdownMathExtension(markdown.Extension):
     def extendMarkdown(self, md):
         # best to have it higher than "indent" (90), which deals with indented list items
         md.parser.blockprocessors.register(MathBlockProcessor(md.parser), 'math', 95)
@@ -49,3 +49,7 @@ class PelicanMathExtension(markdown.Extension):
         md.inlinePatterns.register(
             MathInlineProcessor(MathInlineProcessor.RE_INLINE, md), 'math', 185
         )
+
+
+def makeExtension(**kwargs):
+    return MarkdownMathExtension(**kwargs)
