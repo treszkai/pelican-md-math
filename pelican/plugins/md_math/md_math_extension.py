@@ -8,7 +8,7 @@ from markdown.util import AtomicString
 
 
 class MathInlineProcessor(InlineProcessor):
-    RE_INLINE = r'(?:\\\((.*?)\\\)|\$([^ \t\$]+?)\$)'
+    RE_INLINE = r'(?:\\\((.*?)\\\)|\$([^ \t\r\n\$]+?)\$)'
 
     def handleMatch(self, m, data):
         el = etree.Element('script', attrib={'type': 'math/tex'})
@@ -25,7 +25,6 @@ class MathBlockProcessor(BlockProcessor):
         return re.fullmatch(self.RE_DISPLAY_BLOCK, block, re.DOTALL)
 
     def run(self, parent, blocks):
-        # TODO we can't match if there's an empty line inside the math block
         block = blocks.pop(0)
         m = re.fullmatch(self.RE_DISPLAY_BLOCK, block, re.DOTALL)
 
@@ -34,8 +33,6 @@ class MathBlockProcessor(BlockProcessor):
         e.text = AtomicString(
             self.ELEM_TEXT_BEGIN + m.group(1).strip('\n') + self.ELEM_TEXT_END
         )
-
-        # TODO replace ]]>
 
         return True
 

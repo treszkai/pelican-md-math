@@ -27,6 +27,32 @@ class TestMathExtension(TestCase):
             extensions=['pelican.plugins.md_math'],
         )
 
+    def test_math_inline_newline(self):
+        """Check that paren-style inline math is processed even if contains a newline"""
+        self.assertMarkdownRenders(
+            # The Markdown source text used as input
+            self.dedent(
+                r"""
+                Foo \( bar _baz_
+                qux \),
+                lorem ipsum $do
+                not$.
+                """
+            ),
+            # The expected HTML output
+            self.dedent(
+                r"""
+                <p>Foo <script type="math/tex"> bar _baz_
+                qux </script>,
+                lorem ipsum $do
+                not$.</p>
+                """
+            ),
+            # Other keyword arguments to pass to `markdown.markdown`
+            output_format='html',
+            extensions=[MarkdownMathExtension()],
+        )
+
     def test_math_display_square(self):
         self.assertMarkdownRenders(
             # The Markdown source text used as input
