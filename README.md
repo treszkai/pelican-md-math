@@ -12,7 +12,7 @@ Usage
 4. Write an inline math tag either by:
    - enclosing text between `\(` and `\)`, e.g. `\(foo _bar_ baz\)`, or
    - between two `$` symbols if the text contains no space, e.g. `$a_b^c$`.
-5. Write a display math by surrounding an entire paragraph either with '\[' and `\]`, or with two `$$` tags. Example:
+5. Write a display math block by surrounding an entire paragraph either with '\[' and `\]`, or with two `$$` tags. Example:
 
 ```latex
 \[
@@ -21,6 +21,15 @@ Usage
 \]
 ```
 
+Inline math tags will then be converted to `<script type="math/tex"> bar _baz_ qux </script>` during site generation,
+and display blocks to:
+```
+<script type="math/tex; mode=display">% <![CDATA[
+    % For a visual proof, see https://link.springer.com/article/10.1007/s00283-018-9816-4
+    \pi ^ e < e ^ \pi %]]></script>
+```
+
+These are then rendered with KaTeX in the browser.
 
 Installation
 ------------
@@ -100,11 +109,11 @@ Known limitations
 - Doesn’t create a display block if it contains an empty line
 - Doesn’t ignore an escaping backslash before the `\(` or `$` tags.
 - `]]>` in the math input will probably mess up the HTML output.
-- All files are parsed, regardless of whether latex is enabled.
+- All files are parsed, regardless of whether LaTeX is enabled for the article.
 
 Contributing
 ------------
 
-[Contributing to Pelican]: https://docs.getpelican.com/en/latest/contribute.html
+If you find an issue in this extension, please open a pull request.
 
-If you find an issue in this extension, then please open a pull request.
+You can always [contribute to Pelican]: https://docs.getpelican.com/en/latest/contribute.html
