@@ -15,7 +15,7 @@ setup(
     description="Convert math tags in markdown input for Pelican",
     long_description=Path("README.md").read_text(),
     long_description_content_type="text/markdown",
-    install_requires=["pelican>=4.5"],
+    install_requires=["pelican>=4.5", "Markdown>=3.1.1"],
     include_package_data=True,  # includes files from MANIFEST.in
     classifiers=[
         "Development Status :: 4 - Beta",
