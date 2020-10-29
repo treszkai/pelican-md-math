@@ -59,7 +59,7 @@ Setting up KaTeX headers for Pelican
 
 Two steps are required:
  - Copy the supplied [katex.html] file to your theme's templates directory.
- - Modify the necessary templates (e.g. `article.html` for the article pages) with adding the following in the `{% block head %}` block, before the `{% endblock %}` tag. (An _example_ [article.html] is supplied.)
+ - Modify the necessary templates (e.g. `article.html` for the article pages) with adding the following in the `{% block head %}` block, before the `{% endblock %}` tag. (An _example_ [article.html] is supplied, but you should use the one that comes with your theme.)
 
 ```html
   {% if (article.latex is defined and article.latex) or article.latex_macros is defined %}
