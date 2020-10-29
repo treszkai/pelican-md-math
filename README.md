@@ -1,5 +1,9 @@
 # Convert math content: a plugin for Pelican, an extension for Markdown
 
+
+[![Build Status](https://img.shields.io/github/workflow/status/treszkai/pelican-md-math/build)](https://github.com/treszkai/pelican-md-math/actions) <!-- [![PyPI Version](https://img.shields.io/pypi/v/pelican-md-math)](https://pypi.org/project/pelican-md-math/) -->
+
+
 Extension for Python-Markdown to convert math tags to math scripts, plus a plugin for the [Pelican static site generator](https://github.com/getpelican/pelican).
 
 Usage
