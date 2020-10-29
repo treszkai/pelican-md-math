@@ -1,4 +1,4 @@
-from .md_math import register
-from .md_math_extension import MarkdownMathExtension, makeExtension
+from .md_math_extension import MathExtension, makeExtension
+from .md_math_pelican import register
 
-__all__ = ['register', 'MarkdownMathExtension', 'makeExtension']
+__all__ = ['register', 'MathExtension', 'makeExtension']

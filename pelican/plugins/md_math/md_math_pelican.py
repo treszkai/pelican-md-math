@@ -3,7 +3,7 @@ import sys
 from pelican import signals
 
 try:
-    from .md_math_extension import MarkdownMathExtension
+    from .md_math_extension import MathExtension
 except ImportError:
     MarkdownMathExtension = None
 
@@ -13,7 +13,7 @@ def math_for_markdown(pelicanobj):
 
     try:
         pelicanobj.settings["MARKDOWN"].setdefault("extensions", []).append(
-            MarkdownMathExtension()
+            MathExtension()
         )
     except Exception:
         sys.excepthook(*sys.exc_info())
@@ -29,7 +29,7 @@ def pelican_init(pelicanobj):
     Instantiate the Python markdown extension, passing in the mathjax
     script as config parameter.
     """
-    if MarkdownMathExtension:
+    if MathExtension:
         math_for_markdown(pelicanobj)
 
 

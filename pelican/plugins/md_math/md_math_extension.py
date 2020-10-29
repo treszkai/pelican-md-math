@@ -37,7 +37,7 @@ class MathBlockProcessor(BlockProcessor):
         return True
 
 
-class MarkdownMathExtension(markdown.Extension):
+class MathExtension(markdown.Extension):
     def extendMarkdown(self, md):
         # best to have it higher than "indent" (90), which deals with indented list items
         md.parser.blockprocessors.register(MathBlockProcessor(md.parser), 'math', 95)
@@ -49,4 +49,4 @@ class MarkdownMathExtension(markdown.Extension):
 
 
 def makeExtension(**kwargs):
-    return MarkdownMathExtension(**kwargs)
+    return MathExtension(**kwargs)

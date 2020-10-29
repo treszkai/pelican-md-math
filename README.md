@@ -1,4 +1,4 @@
-# Convert math content: A Plugin for Pelican
+# Convert math content: a plugin for Pelican, an extension for Markdown
 
 Extension for Python-Markdown to convert math tags to math scripts, plus a plugin for the [Pelican static site generator](https://github.com/getpelican/pelican).
 
@@ -49,9 +49,9 @@ md = markdown.Markdown(extensions=['pelican.plugins.md_math'])
 
 ```python
 import markdown
-from pelican.plugins.md_math import MarkdownMathExtension
+from pelican.plugins.md_math import MathExtension
 
-md = markdown.Markdown(extensions=[MarkdownMathExtension()])
+md = markdown.Markdown(extensions=[MathExtension()])
 ```
 
 Setting up KaTeX headers for Pelican
