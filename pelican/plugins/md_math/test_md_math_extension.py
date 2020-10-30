@@ -1,3 +1,5 @@
+import unittest
+
 from markdown.test_tools import TestCase
 
 from pelican.plugins.md_math import MathExtension
@@ -10,6 +12,7 @@ class TestMathExtension(TestCase):
             self.dedent(
                 r"""
                 Foo \( bar _baz_ qux \),
+                this\(a\)no space around
                 lorem $a_b$ ipsum $4.00 $5.00,
                 `do $not$ parse`
                 """
@@ -18,6 +21,7 @@ class TestMathExtension(TestCase):
             self.dedent(
                 r"""
                 <p>Foo <script type="math/tex"> bar _baz_ qux </script>,
+                this<script type="math/tex">a</script>no space around
                 lorem <script type="math/tex">a_b</script> ipsum $4.00 $5.00,
                 <code>do $not$ parse</code></p>
                 """
@@ -98,3 +102,35 @@ class TestMathExtension(TestCase):
             output_format='html',
             extensions=[MathExtension()],
         )
+
+    @unittest.expectedFailure
+    def test_math_header_only(self):
+        """If meta plugin is enabled, then math is parsed only if latex:true in header"""
+        for header in ['', 'Title: Lorem ipsum', 'latex: false']:
+            with self.subTest(header=header):
+                self.assertMarkdownRenders(
+                    # The Markdown source text used as input
+                    self.dedent(
+                        rf"""
+                        {header}
+
+                        Foo \( bar _baz_ qux \)
+
+                        \[
+                        bar _baz_ qux
+                        \]
+                        """
+                    ),
+                    # The expected HTML output
+                    self.dedent(
+                        r"""
+                        <p>Foo ( bar <em>baz</em> qux )</p>
+                        <p>[
+                        bar <em>baz</em> qux
+                        ]</p>
+                        """
+                    ),
+                    # Other keyword arguments to pass to `markdown.markdown`
+                    output_format='html',
+                    extensions=['pelican.plugins.md_math', 'meta'],
+                )
