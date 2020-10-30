@@ -6,8 +6,7 @@
 
 Extension for Python-Markdown to convert math tags to math scripts, plus a plugin for the [Pelican static site generator](https://github.com/getpelican/pelican).
 
-Usage
------
+## Usage
 
 1. [Install package](#Installation).
 2. For Pelican: set up KaTeX header.
@@ -35,8 +34,7 @@ and display blocks to:
 
 These are then rendered with KaTeX in the browser.
 
-Installation
-------------
+## Installation
 
 For the Pelican plugin, you just need to install the package:
 
@@ -51,6 +49,8 @@ import markdown
 md = markdown.Markdown(extensions=['pelican.plugins.md_math'])
 ```
 
+or
+
 ```python
 import markdown
 from pelican.plugins.md_math import MathExtension
@@ -58,8 +58,7 @@ from pelican.plugins.md_math import MathExtension
 md = markdown.Markdown(extensions=[MathExtension()])
 ```
 
-Setting up KaTeX headers for Pelican
-====================================
+### Setting up KaTeX headers for Pelican
 
 Two steps are required:
  - Copy the supplied [katex.html] file to your theme's templates directory.
@@ -71,11 +70,9 @@ Two steps are required:
   {% endif %}
 ```
 
-Adding LaTeX macros for Pelican
--------------------------------
+## Adding LaTeX macros for Pelican
 
-Site-level macros
-=================
+### Site-level macros
 
 Define a `LATEX_MACROS` dictionary in `pelicanconf.py`:
 
@@ -92,8 +89,7 @@ LATEX_MACROS = {
 These can be used as ordinary LaTeX macros, e.g. `\RR` or `\Godel{\phi}`.
 The latter example demonstrates a parametric macro.
 
-Article-level macros
-====================
+### Article-level macros
 
 You can define `latex_macros` in the article header as follows:
 
@@ -107,17 +103,15 @@ latex_macros:
 
 (In the presence of `latex_macros`, you don't need the `latex: true` line.)
 
-Known limitations
------------------
+## Known limitations
 
 - Doesn’t create a display block if it contains an empty line
 - Doesn’t ignore an escaping backslash before the `\(` or `$` tags.
 - `]]>` in the math input will probably mess up the HTML output.
 - All files are parsed, regardless of whether LaTeX is enabled for the article.
 
-Contributing
-------------
+## Contributing
 
-If you find an issue in this extension, please open a pull request.
+If you find an issue in this extension, please open an issue or a pull request.
 
 You can always [contribute to Pelican]: https://docs.getpelican.com/en/latest/contribute.html
