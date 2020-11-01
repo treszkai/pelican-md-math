@@ -39,13 +39,16 @@ class MathBlockProcessor(BlockProcessor):
 
 class MathExtension(markdown.Extension):
     def extendMarkdown(self, md):
-        # best to have it higher than "indent" (90), which deals with indented list items
-        md.parser.blockprocessors.register(MathBlockProcessor(md.parser), 'math', 95)
         # priority higher than that of "escape" (180), which deals with backslash escapes,
         # but lower than "backtick" (190), which replaces `e=f()` or ``e=f("`")``.
+        # (see markdown/inlinepatterns.py:build_inlinepatterns)
         md.inlinePatterns.register(
             MathInlineProcessor(MathInlineProcessor.RE_INLINE, md), 'math', 185
         )
+
+        # best to have it higher than "indent" (90), which deals with indented list items
+        # (see markdown/blockprocessors/blockprocessors.py:build_block_parser)
+        md.parser.blockprocessors.register(MathBlockProcessor(md.parser), 'math', 95)
 
 
 def makeExtension(**kwargs):
