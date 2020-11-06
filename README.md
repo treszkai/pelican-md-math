@@ -61,14 +61,16 @@ md = markdown.Markdown(extensions=[MathExtension()])
 ### Setting up KaTeX headers for Pelican
 
 Two steps are required:
- - Copy the supplied [katex.html] file to your theme's templates directory.
- - Modify the necessary templates (e.g. `article.html` for the article pages) with adding the following in the `{% block head %}` block, before the `{% endblock %}` tag. (An _example_ [article.html] is supplied, but you should use the one that comes with your theme.)
+ - Copy the supplied [katex.html](katex.html) file to your theme's templates directory.
+ - Modify the necessary templates (e.g. `article.html` for the article pages) with adding the following in the `{% block head %}` block, before the `{% endblock %}` tag. (An _example_ [article.html](article.html) is supplied, but you should use the one that comes with your theme.)
 
 ```html
   {% if (article.latex is defined and article.latex) or article.latex_macros is defined %}
     {% include 'katex.html' %}
   {% endif %}
 ```
+
+If your repository doesn’t contain a copy of your theme, then just create a directory `templates` with the two files mentioned above, and set `THEME_TEMPLATES_OVERRIDES = ['templates']` in your `pelicanconf.py`.
 
 ## Adding LaTeX macros for Pelican
 
