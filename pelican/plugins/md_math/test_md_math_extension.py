@@ -103,6 +103,32 @@ class TestMathExtension(TestCase):
             extensions=[MathExtension()],
         )
 
+    def test_math_display_ampersand(self):
+        self.assertMarkdownRenders(
+            # The Markdown source text used as input
+            self.dedent(
+                r"""
+                \[\begin{cases}
+                θ_{i+1}' & \text{if } b=1,\\
+                θ_i & \text{if } b=0.
+                \end{cases}\]
+                """
+            ),
+            # The expected HTML output
+            self.dedent(
+                r"""
+                <script type="math/tex; mode=display">% <![CDATA[
+                \begin{cases}
+                θ_{i+1}' & \text{if } b=1,\\
+                θ_i & \text{if } b=0.
+                \end{cases} %]]></script>
+                """
+            ),
+            # Other keyword arguments to pass to `markdown.markdown`
+            output_format='html',
+            extensions=[MathExtension()],
+        )
+
     @unittest.expectedFailure
     def test_math_header_only(self):
         """If meta plugin is enabled, then math is parsed only if latex:true in header"""
